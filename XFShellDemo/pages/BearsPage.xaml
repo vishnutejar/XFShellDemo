@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XFShellDemo.pages.BearsPage"
+                Shell.BackgroundColor="Gray"
+             Shell.NavBarIsVisible="True"
+             Shell.ForegroundColor="White"
+             Shell.TitleColor="Blue"
+             Shell.DisabledColor="#95FFFFFF"
+             Shell.UnselectedColor="#B4FFFFFF"
+             Title="Bears">
+    <Shell.TitleView >
+        <StackLayout Orientation="Horizontal" BackgroundColor="Pink">
+            <Label Text="Titel" FontSize="Body" TextColor="White" HorizontalTextAlignment="Center"></Label>
+        </StackLayout>
+       
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Welcome to BearsPage"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
