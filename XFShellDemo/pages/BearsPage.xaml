@@ -2,24 +2,39 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XFShellDemo.pages.BearsPage"
-                Shell.BackgroundColor="Gray"
-             Shell.NavBarIsVisible="True"
-             Shell.ForegroundColor="White"
-             Shell.TitleColor="Blue"
-             Shell.DisabledColor="#95FFFFFF"
-             Shell.UnselectedColor="#B4FFFFFF"
+             xmlns:controls="clr-namespace:XFShellDemo.Controls"
+             xmlns:data="clr-namespace:XFShellDemo.Date"
+             xmlns:pages="clr-namespace:XFShellDemo.pages.detailpages"
              Title="Bears">
-    <Shell.TitleView >
-        <StackLayout Orientation="Horizontal" BackgroundColor="Pink">
-            <Label Text="Titel" FontSize="Body" TextColor="White" HorizontalTextAlignment="Center"></Label>
-        </StackLayout>
-       
-    </Shell.TitleView>
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to BearsPage"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+    <ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" 
+                                        Value="#039BE6" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+
+    <Shell.SearchHandler>
+        <controls:AnimalSearchHandler Placeholder="Enter search term"
+                                      ShowsResults="true"
+                                      ItemTemplate="{StaticResource AnimalSearchTemplate}"
+                                      Animals="{x:Static data:BearData.Bears}"
+                                      SelectedItemNavigationTarget="{x:Type pages:BearDetailPage}" />
+    </Shell.SearchHandler>
+
+    <CollectionView Margin="20"
+                    ItemsSource="{x:Static data:BearData.Bears}"
+                    ItemTemplate="{StaticResource AnimalTemplate}"
+                    SelectionMode="Single"
+                    SelectionChanged="OnCollectionViewSelectionChanged" />
 </ContentPage>
